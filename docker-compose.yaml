@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mercure:
+    container_name: image-mercure
+    restart: unless-stopped
+    working_dir: /app/project
+    build:
+      dockerfile: ./Dockerfile
+    environment:
+      SERVER_NAME: ':80'
+      MERCURE_PUBLISHER_JWT_KEY: 'qslmdkmlqskdmlkqlsdk;mqlksdmlkqmlsdklmqksdmlkqmlskd'
+      MERCURE_SUBSCRIBER_JWT_KEY: 'qslmdkmlqskdmlkqlsdk;mqlksdmlkqmlsdklmqksdmlkqmlskd'
+    tty: true
+    volumes:
+      - './Docker/mercure/Caddyfile.dev:/app/Caddyfile.dev'
+    ports:
+      - "9494:80"
